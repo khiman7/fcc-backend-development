@@ -16,7 +16,7 @@ app.use(express.urlencoded())
 app.use('/public', express.static(__dirname + '/public')); 
 app.use(cors());
 
-app.get('/', (request, response) => {
+app.get('/', (_, response) => {
   const filepath = path.join(__dirname, 'views', 'index.html');
   
   response.sendFile(filepath);
@@ -30,7 +30,7 @@ app.get('/api/shorturl/:shortURL', (request, response) => {
 
     response.redirect(originalURL);
   } else {
-    response.;
+    response.status(404).json({ error: 'URL is not found' });
   }
 });
 
